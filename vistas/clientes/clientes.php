@@ -28,18 +28,12 @@
 
         var formData = new FormData(this);
 
-        console.log("Datos del formulario:", Object.fromEntries(formData)); // Imprime los datos del formulario en la consola
-
-        fetch('../controladores/ClienteController.php', {
+        fetch('../../controladores/ClienteController.php', {
             method: 'POST',
             body: formData
         })
-        .then(response => {
-            console.log("Respuesta del servidor:", response); // Imprime la respuesta del servidor
-            return response.text();
-        })
+        .then(response => response.text())
         .then(data => {
-            console.log("Datos recibidos:", data); // Imprime los datos recibidos del servidor
             // Cerrar el modal
             var modal = bootstrap.Modal.getInstance(document.getElementById('agregarClienteModal'));
             modal.hide();

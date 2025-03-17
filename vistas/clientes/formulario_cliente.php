@@ -16,4 +16,9 @@
         <input type="text" class="form-control" id="Telefono" name="Telefono">
     </div>
     <button type="submit" class="btn btn-primary">Agregar Cliente</button>
+    <?php $mensaje = "";
+            echo $mensaje;?>
+    <div class="alert <?php echo (strpos($mensaje, 'creado') !== false) ? 'alert-success' : 'alert-danger'; ?>">
+            
+        </div>
 </form>

@@ -51,37 +51,52 @@ $cargo = $_SESSION['cargo'];
         
         <!-- barra lateral -->
         <div id="sidebar" class="sidebar bg-dark p-3">
-            <a href="#" onclick="cambiarContenido('Historial ventas')">
+            <a href="#" data-bs-toggle="collapse" data-bs-target="#submenuHistorial" aria-expanded="false">
                 <i class="bi bi-people"></i> Historial ventas
             </a>
+            <div class="collapse" id="submenuHistorial">
+                <a href="#" class="sub-item" onclick="cambiarContenido('Historial ventas', 'ver_lista')">Ver lista</a>
+            </div>
 
-            <a href="#" onclick="cambiarContenido('Ventas')">
+            <a href="#" data-bs-toggle="collapse" data-bs-target="#submenuVentas" aria-expanded="false">
                 <i class="bi bi-person"></i> Ventas
             </a>
-           
+            <div class="collapse" id="submenuVentas">
+                <a href="#" class="sub-item" onclick="cambiarContenido('Ventas', 'agregar')">Agregar</a>
+                <a href="#" class="sub-item" onclick="cambiarContenido('Ventas', 'actualizar')">Actualizar</a>
+            </div>
 
-            <a href="#" onclick="cambiarContenido('Categorías')">
+            <a href="#" data-bs-toggle="collapse" data-bs-target="#submenuCategorias" aria-expanded="false">
                 <i class="bi bi-tags"></i> Categorías
             </a>
-           
+            <div class="collapse" id="submenuCategorias">
+                <a href="#" class="sub-item" onclick="cambiarContenido('Categorías', 'ver_lista')">Ver lista</a>
+               
+            </div>
 
-            <?php if (strtolower($cargo) == 'administrador'): ?> <!--Muestra dependiendo el cargo; puede aplicarlo a otros cargos solo o anexado-->
-            <a href="#" onclick="cambiarContenido('Empleados')">
+            <?php if (strtolower($cargo) == 'administrador'): ?> <!--muestra si es admin-->
+            <a href="#" data-bs-toggle="collapse" data-bs-target="#submenuEmpleados" aria-expanded="false">
                 <i class="bi bi-box-seam"></i> Empleados
             </a>
-            
+            <div class="collapse" id="submenuEmpleados">
+                <a href="#" class="sub-item" onclick="cambiarContenido('Empleados', 'ver_lista')">Ver lista</a>
+                <a href="#" class="sub-item" onclick="cambiarContenido('Empleados', 'agregar')">Agregar</a>
+                <a href="#" class="sub-item" onclick="cambiarContenido('Empleados', 'borrar')">Borrar</a>
+                <a href="#" class="sub-item" onclick="cambiarContenido('Empleados', 'actualizar')">Actualizar</a>
+            </div>
             <?php endif; ?>
 
             <a href="#" onclick="cambiarContenido('Clientes')">
-                <i class="bi bi-cart"></i> Clientes
+            <i class="bi bi-cart"></i> Clientes
             </a>
-            
 
             <?php if (strtolower($cargo) == 'administrador'): ?> <!--muestra si es admin-->
-            <a href="#" onclick="cambiarContenido('Inventario')">
+            <a href="#" data-bs-toggle="collapse" data-bs-target="#submenuInventario" aria-expanded="false">
                 <i class="bi bi-gear"></i> Inventario
             </a>
-            
+            <div class="collapse" id="submenuInventario">
+                <a href="#" class="sub-item" onclick="cambiarContenido('Inventario', 'ver_lista')">Ver lista</a>
+            </div>
             <?php endif; ?>
 
         </div>

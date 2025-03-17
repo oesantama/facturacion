@@ -1,4 +1,5 @@
 <?php
+
 include_once '../modelos/Cliente.php';
 include_once '../config/connection.php';
 
@@ -36,10 +37,9 @@ class ClienteController {
     }
 
     public function create() {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Imprime los datos POST recibidos
-            error_log("Datos POST recibidos: " . print_r($_POST, true));
+        $mensaje = ""; // Inicializar mensaje
 
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Obtener conexión a la base de datos
             $database = new Database();
             $db = $database->getConnection();
@@ -55,25 +55,18 @@ class ClienteController {
 
             // Crear el cliente
             if ($cliente->create()) {
-                echo "Cliente creado correctamente.";
+                $mensaje = "Cliente creado correctamente.";
             } else {
-                echo "Error al crear el cliente.";
+                $mensaje = "Error al crear el cliente.";
             }
-        } else {
-            echo "Acceso no permitido."; // O un mensaje de error
+
+            // Incluir la vista para mostrar el formulario con mensaje
+               echo $mensaje;
+           
+            exit;
+
         }
-        exit; // Importante: Terminar la ejecución después de responder
+
     }
-}
-
-// Determinar la acción a realizar (crear o listar)
-$clienteController = new ClienteController();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Si es POST, crear
-    $clienteController->create();
-} else {
-    // Si no, mostrar la tabla
-    $clienteController->index();
 }
 ?>
