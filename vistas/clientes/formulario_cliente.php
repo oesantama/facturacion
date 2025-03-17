@@ -1,4 +1,4 @@
-<?php $mensaje = ""; ?>
+
 <form id="agregarClienteForm" method="POST">
     <div class="mb-3">
         <label for="Nit_Cedula" class="form-label">Nit/Cédula:</label>
@@ -17,9 +17,5 @@
         <input type="text" class="form-control" id="Telefono" name="Telefono">
     </div>
     <button type="submit" class="btn btn-primary">Agregar Cliente</button>
-    <div class="alert <?php echo (strpos($mensaje, 'creado') !== false) ? 'alert-success' : 'alert-danger'; ?>">
-            <?php echo $mensaje; ?>
-        </div>
-       
        
 </form>

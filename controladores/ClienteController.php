@@ -36,30 +36,5 @@ class ClienteController {
         include '../vistas/clientes/tabla_clientes.php';
     }
 
-    public function create() {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Obtener conexión a la base de datos
-            $database = new Database();
-            $db = $database->getConnection();
-
-            // Crear instancia del modelo Cliente
-            $cliente = new Cliente($db);
-
-            // Asignar valores a las propiedades del cliente
-            $cliente->Nit_Cedula = $_POST['Nit_Cedula'];
-            $cliente->Nombre = $_POST['Nombre'];
-            $cliente->Direccion = $_POST['Direccion'];
-            $cliente->Telefono = $_POST['Telefono'];
-
-            // Crear el cliente
-            if ($cliente->create()) {
-                echo "Cliente creado correctamente.";
-            } else {
-                echo "Error al crear el cliente.";
-            }
-            exit;
-        }
-
-    }
 }
 ?>
