@@ -23,41 +23,50 @@
 </div>
 
 <script>
-    document.getElementById('agregarClienteForm').addEventListener('submit', function (e) {
-        e.preventDefault();
+    document.addEventListener('DOMContentLoaded', function() {  // Asegurarse de que el DOM esté cargado
+        const form = document.getElementById('agregarClienteForm');
 
-        var formData = new FormData(this);
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
 
-        fetch('../../controladores/ClienteController.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.text())
-        .then(data => {
-            // Cerrar el modal
-            var modal = bootstrap.Modal.getInstance(document.getElementById('agregarClienteModal'));
-            modal.hide();
+            const formData = new FormData(form);
+            console.log("Datos del formulario (FormData):");
+			for (let pair of formData.entries()) {
+				console.log(pair[0]+ ', ' + pair[1]);
+			}
 
-            // Actualizar la tabla
-            actualizarTablaClientes();
-
-            // Mostrar mensaje (puedes usar una alerta de Bootstrap)
-            alert(data); // O usar una alerta de Bootstrap más estilizada
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error al agregar cliente.');
-        });
-    });
-
-    function actualizarTablaClientes() {
-        fetch('tabla_clientes.php')
-            .then(response => response.text())
-            .then(data => {
-                document.querySelector('.table').outerHTML = data; // Reemplaza la tabla
-            })
-            .catch(error => {
-                console.error('Error:', error);
+            $.ajax({
+                url: "../../controladores/ClienteController.php",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    console.log("Enviando formulario..."); // Mensaje de depuración
+                },
+                success: function(datos) {
+                    console.log("Datos recibidos:", datos); // Mensaje de depuración
+                    bootbox.alert(datos);
+                    actualizarTablaClientes(); // Actualizar la tabla
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('agregarClienteModal')); //Obtener la instancia del modal
+                    modal.hide()//Esconderlo
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
+                    alert("Error al agregar cliente.");
+                }
             });
-    }
+        });
+
+        function actualizarTablaClientes() {
+            fetch('tabla_clientes.php')
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('.table').outerHTML = data; // Reemplaza la tabla
+                })
+                .catch(error => {
+                    console.error("Error al actualizar la tabla:", error);
+                });
+        }
+    });
 </script>

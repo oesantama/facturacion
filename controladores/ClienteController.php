@@ -37,8 +37,6 @@ class ClienteController {
     }
 
     public function create() {
-        $mensaje = ""; // Inicializar mensaje
-
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Obtener conexión a la base de datos
             $database = new Database();
@@ -55,16 +53,11 @@ class ClienteController {
 
             // Crear el cliente
             if ($cliente->create()) {
-                $mensaje = "Cliente creado correctamente.";
+                echo "Cliente creado correctamente.";
             } else {
-                $mensaje = "Error al crear el cliente.";
+                echo "Error al crear el cliente.";
             }
-
-            // Incluir la vista para mostrar el formulario con mensaje
-               echo $mensaje;
-           
             exit;
-
         }
 
     }

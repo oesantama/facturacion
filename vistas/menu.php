@@ -30,6 +30,8 @@ $cargo = $_SESSION['cargo'];
     
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootbox@5.5.2/bootbox.min.js"></script>
     <script src="javascript/menu.js"></script>
 </head>
 <body>
@@ -51,39 +53,25 @@ $cargo = $_SESSION['cargo'];
         
         <!-- barra lateral -->
         <div id="sidebar" class="sidebar bg-dark p-3">
-            <a href="#" data-bs-toggle="collapse" data-bs-target="#submenuHistorial" aria-expanded="false">
+            <a href="#" onclick="cambiarContenido('Historial ventas')">
                 <i class="bi bi-people"></i> Historial ventas
             </a>
-            <div class="collapse" id="submenuHistorial">
-                <a href="#" class="sub-item" onclick="cambiarContenido('Historial ventas', 'ver_lista')">Ver lista</a>
-            </div>
-
-            <a href="#" data-bs-toggle="collapse" data-bs-target="#submenuVentas" aria-expanded="false">
+            
+            <a href="#" onclick="cambiarContenido('Ventas')">
                 <i class="bi bi-person"></i> Ventas
             </a>
-            <div class="collapse" id="submenuVentas">
-                <a href="#" class="sub-item" onclick="cambiarContenido('Ventas', 'agregar')">Agregar</a>
-                <a href="#" class="sub-item" onclick="cambiarContenido('Ventas', 'actualizar')">Actualizar</a>
-            </div>
+            
 
-            <a href="#" data-bs-toggle="collapse" data-bs-target="#submenuCategorias" aria-expanded="false">
+            <a href="#" onclick="cambiarContenido('Categorías')">
                 <i class="bi bi-tags"></i> Categorías
             </a>
-            <div class="collapse" id="submenuCategorias">
-                <a href="#" class="sub-item" onclick="cambiarContenido('Categorías', 'ver_lista')">Ver lista</a>
-               
-            </div>
+           
 
             <?php if (strtolower($cargo) == 'administrador'): ?> <!--muestra si es admin-->
-            <a href="#" data-bs-toggle="collapse" data-bs-target="#submenuEmpleados" aria-expanded="false">
+            <a href="#"onclick="cambiarContenido('Empleados')">
                 <i class="bi bi-box-seam"></i> Empleados
             </a>
-            <div class="collapse" id="submenuEmpleados">
-                <a href="#" class="sub-item" onclick="cambiarContenido('Empleados', 'ver_lista')">Ver lista</a>
-                <a href="#" class="sub-item" onclick="cambiarContenido('Empleados', 'agregar')">Agregar</a>
-                <a href="#" class="sub-item" onclick="cambiarContenido('Empleados', 'borrar')">Borrar</a>
-                <a href="#" class="sub-item" onclick="cambiarContenido('Empleados', 'actualizar')">Actualizar</a>
-            </div>
+           
             <?php endif; ?>
 
             <a href="#" onclick="cambiarContenido('Clientes')">
@@ -91,12 +79,10 @@ $cargo = $_SESSION['cargo'];
             </a>
 
             <?php if (strtolower($cargo) == 'administrador'): ?> <!--muestra si es admin-->
-            <a href="#" data-bs-toggle="collapse" data-bs-target="#submenuInventario" aria-expanded="false">
+            <a href="#" onclick="cambiarContenido('Inventario')">
                 <i class="bi bi-gear"></i> Inventario
             </a>
-            <div class="collapse" id="submenuInventario">
-                <a href="#" class="sub-item" onclick="cambiarContenido('Inventario', 'ver_lista')">Ver lista</a>
-            </div>
+           
             <?php endif; ?>
 
         </div>

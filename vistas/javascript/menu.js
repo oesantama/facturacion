@@ -8,7 +8,7 @@ function cambiarContenido(titulo) {
     switch (titulo) {
         case "Clientes":
             // Lógica específica para cargar clientes.php
-            fetch('clientes/clientes.php')
+            fetch('../vistas/clientes/clientes.php')  //Cargar vista de clientes
                 .then(response => response.text())
                 .then(data => {
                     contenidoDiv.innerHTML = data;
