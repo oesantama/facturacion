@@ -14,6 +14,7 @@ class Cliente {
         $this->conn = $db;
     }
 
+    
     // Leer todos los clientes
     public function read() {
         $query = "SELECT ID_Cliente, Nit_Cedula, Nombre, Direccion, Telefono FROM " . $this->table_name;
